@@ -56,9 +56,25 @@ docker run --name test-postgres --network=postgres-network -e "POSTGRES_PASSWORD
 
 Criando um container para executar pgAdmin4
 ```shell
-docker run --name teste-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=test@email.com" -e "PGADMIN_DEFAULT_PASSWORD=postgres123456" -d dpage/pgadmin4
+docker run --name test-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=test@email.com" -e "PGADMIN_DEFAULT_PASSWORD=postgres123456" -d dpage/pgadmin4
 ```
-Acessar URL http://localhost:15432 para acessar a tela para login no pgAdmin 4 com login e senha atribuidos em PGADMIN_DEFAULT_EMAIL e PGADMIN_DEFAULT_PASSWORD.
+Acessar URL http://localhost:15432 e na tela de login do pgAdmin 4 usar o login e senha atribuidos em PGADMIN_DEFAULT_EMAIL e PGADMIN_DEFAULT_PASSWORD.
+
+- Server > Register > Server
+- Aba General
+- Campo Name: Local
+- Aba Conection
+- Host name/address: test-postgres
+- Port: 5432
+- Maintenance: postgres
+- Username: postgres
+- Password: postgres123456
+
+
+Criar banco
+- Local > create > Database 
+
+
 
 > https://imasters.com.br/banco-de-dados/postgresql-docker-executando-uma-instancia-e-o-pgadmin-4-partir-de-containers
 
