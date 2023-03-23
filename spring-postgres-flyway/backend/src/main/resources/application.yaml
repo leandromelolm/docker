@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: ${APP_PROFILE:create-schema}
+  jpa:
+    open-in-view: false
