@@ -37,6 +37,7 @@ O arquivo compose.yml define um aplicativo com dois serviços `backend` e `db`.
 Ao implantar o aplicativo, o docker compose mapeia a porta 8080 do contêiner de serviço de back-end para a porta 8080 do host.
 Certifique-se de que a porta 8080 no host não esteja em uso. <br>
 O Banco de dados PostgreSQL é mapeado para host 5432. <br>
+
 Host: localhost <br>
 Port: 5432 <br>
 Database: person_db <br>
@@ -65,6 +66,22 @@ docker compose down
 Se você precisar parar e remover todos os contêineres, redes e todas as imagens usadas por qualquer serviço no arquivo docker-compose.yml, use o comando:
 ```bash
 docker-compose down --rmi all
+```
+
+### Executar container PgAdmin 4
+```shell
+docker run --name pgadmin-spring-postgres --network=spring-postgres -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" -e "PGADMIN_DEFAULT_PASSWORD=admin" -d dpage/pgadmin4
+```
+Servers > Register > Serve
+```yaml
+General
+  Name: Local-docker-spring-postgres
+Connection
+  Host name: spring-postgres-db-1
+  Port: 5432
+  Maintenance: postgres
+  Username: postgres
+  Password: db-wrz2z
 ```
 
 ### Observações

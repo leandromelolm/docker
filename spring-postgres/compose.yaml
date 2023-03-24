@@ -33,3 +33,4 @@ secrets:
     file: db-pw/password.txt
 networks:
   spring-postgres:
+    name: spring-postgres
