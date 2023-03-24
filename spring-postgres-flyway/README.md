@@ -36,7 +36,7 @@ Aba Connection
 ### Criar e iniciar um container para executar PgAdmin 4 que permite se conectar com containers iniciados no docker compose
 Ao executar `docker compose down` as configurações feita no PgAdmin 4 são apagadas,
 e ao reiniciar será necessário fazer todas as configurações do Server para abrir o banco.
-Para não precisar refazendo as configurações, pode-se criar e iniciar um container a parte.
+Para não precisar refazer as configurações quando executar o `docker compose up`, pode-se criar e iniciar um container  com o PgAdmin 4 a parte.
 Quando não precisar mais usar o container é só digitar o comando `docker container stop test-pgadmin-spring-postgres`.
 Para iniciar novamente  `docker container start test-pgadmin-spring-postgres`.
 
