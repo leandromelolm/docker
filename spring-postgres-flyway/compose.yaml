@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: app
     depends_on:
       - db
     restart: on-failure
@@ -12,8 +13,18 @@ services:
       - POSTGRES_PASSWORD=$ENV_POSTGRES_PASSWORD
     networks:
       - spring-postgres
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "15432:80"
+    networks:
+      - spring-postgres
   db:
     image: postgres:15.2
+    container_name: spring-postgres-db
     restart: always
     secrets:
       - db-password
