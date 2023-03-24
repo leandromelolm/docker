@@ -1,4 +1,4 @@
-# docker
+# Docker
 
 
 ### Docker comandos básicos
@@ -9,9 +9,12 @@
 | docker compose up -d                                               | Criar e iniciar com terminal liberado                                                                                     |
 | docker compose down                                                | Parar containers                                                                                                          |
 | docker compose down --rmi all -v                                   | Parar e remover imagens e volumes                                                                                         |
+| docker compose down -v                                             | Parar e remove containers e volumes                                                                                       |
 | docker container logs -f ID_OU_NOME_CONTAINER                      | Docker logs                                                                                                               |
 | docker exec -it CONTAINER_NAME /bin/bash                           | Acessar container                                                                                                         |
-| docker container ls -a                                             | Listar container (até os parados)                                                                                         |
+| docker container ls -a                                             | Listar container (todos)                                                                                                  |
+| docker ps -a                                                       | Listar container (todos)                                                                                                  |
+| docker ps                                                          | Lista container em execução                                                                                               |
 | docker ps -a -q                                                    | Listar container (-q para exibir apenas id)                                                                               |
 | docker ps -a --format '{{.ID}} {{.Names}}'                         | Listar com ID e Nome dos container                                                                                        |
 | docker ps -f "status=exited" --format "table {{.ID}}\t{{.Names}}"  | filtra apenas os containers que estão parados (status = exited) e mostra o ID e o nome de cada um em um formato de tabela |
@@ -23,22 +26,27 @@
 | docker container start CONTAINER_ID_OU_NAME                        | Iniciar container                                                                                                         |
 | docker container top CONTAINER_ID_OU_NAME                          | Ver processos do container em execução                                                                                    |
 | docker container rm ID_CONTAINER                                   | Remover container                                                                                                         |
-| docker image ls -a                                                 | Listar Imagens                                                                                                            |
+| docker container rm CONTAINER_ID CONTAINER_ID                      | Remover múltiplos containers                                                                                              |
+| docker image ls -a                                                 | Listar imagens docker                                                                                                     |
+| docker images                                                      | Listar imagens docker                                                                                                     |
 | docker image inspect IMAGE_ID                                      | Inspecionar Imagens                                                                                                       |
-| docker rmi -f IMAGE_ID                                             | Remover imagem                                                                                                            |
+| docker rmi -f IMAGE_ID                                             | Remover imagem (força remoção)                                                                                            |
+| docker rmi IMAGE_ID IMAGE_ID                                       | Remover várias imagem                                                                                                     |
 | docker volume ls                                                   | Listar volumes                                                                                                            |
 | docker volume inspect VOLUME_NAME                                  | Inspecionar volume                                                                                                        |
-| docker volume rm ID_VOLUME                                         | Remover volume                                                                                                            |
+| docker volume rm VOLUME_ID_ou_VOLUME_NAME                          | Remover volume                                                                                                            |
 | docker network ls                                                  | Listar redes                                                                                                              |
 | docker network rm NETWORK_ID                                       | Remover rede                                                                                                              |
 | docker events                                                      | Inspecionar o que tá acontencendo (usar aba separada)                                                                     |
 | docker stats                                                       | Estatisticas da maquina com uso de containers em execução (usar aba separada)                                             |
 | docker run -p 81:81 -d -m 512m --cpu-quota 50000 IMAGE_NAME        | Executar container com parametros de memória e cpu de uso limitados                                                       |
 | docker system df                                                   | Informações do sistema do docker                                                                                          |
-| mvn clean package -DskipTests                                      | Gerar jar com maven (`java`)                                                                                              |
+| mvn clean package -DskipTests                                      | Comando maven para gerar jar do projeto spring java (pula os testes)                                                      |
 | docker ps -as --format "table {{.ID}}\t{{.Names}}\t{{.Size}}"      | Para ver o tamanho que cada container ocupa no disco                                                                      |
 | docker images --format "{{.Repository}}\t{{.Tag}}\t{{.Size}}"      | Para ver o tamanho de todas as imagens no seu sistema Docker                                                              |
 | docker system df -v                                                | Mostra informações sobre o uso de espaço em disco do Docker, incluindo informações sobre volumes, imagens e containers    |
+| docker system prune -a                                             | Comando remove todos os contêineres não utilizados                                                                        |
+| docker volume prune                                                | Remove todos os volumes não utilizados                                                                                    |
 
 ### Docker + PostgreSQL + PgAdmin4
 
@@ -66,22 +74,31 @@ docker run --name test-pgadmin --network=postgres-network -p 15432:80 -e "PGADMI
 ```
 Acessar URL http://localhost:15432 e na tela de login do pgAdmin 4 usar o login e senha atribuidos em PGADMIN_DEFAULT_EMAIL e PGADMIN_DEFAULT_PASSWORD.
 
-- Server > Register > Server
-- Aba General
-- Campo Name: Local
-- Aba Conection
-- Host name/address: test-postgres
-- Port: 5432
-- Maintenance: postgres
-- Username: postgres
-- Password: postgres123456
+- Criar um servidor: Server > Register > Server
+
+```
+Tab General
+    Name: Local
+    
+Tab Conection
+    Host name/address: test-postgres
+    Port: 5432
+    Maintenance: postgres
+    Username: postgres
+    Password: postgres123456
+```
+
+Criar banco de dados:
+- Local > Create > Database 
 
 
-Criar banco
-- Local > create > Database 
+Os volumes do Docker são gerenciados pelo Docker. Um diretório é criado em `/var/lib/docker/volumes` na instância de contêiner que contém os dados de volume.
 
-
-
+### Referências dos projetos
 > https://imasters.com.br/banco-de-dados/postgresql-docker-executando-uma-instancia-e-o-pgadmin-4-partir-de-containers
-
+> https://learn.microsoft.com/pt-br/visualstudio/docker/tutorials/tutorial-multi-container-app-mysql
+> https://www.hostinger.com.br/tutoriais/remover-imagem-docker
+> https://www.freecodecamp.org/portuguese/news/como-remover-imagens-e-conteineres-no-docker
+> https://www.hostinger.com.br/tutoriais/remover-imagem-docker
+> https://medium.com/@gomex/logs-no-docker-c6f3c7fa6ee4
 
