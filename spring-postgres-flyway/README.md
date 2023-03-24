@@ -60,13 +60,13 @@ Aba Connection
 ```
 
 ### Criar e iniciar um container para executar uma instância do PostgreSQL e PgAdmin 4 para executar com profile dev do projeto
-Primeiramente no application.yml o profile ativo deve ser o `dev`.
+Primeiramente, no application.yml o profile ativo deve ser o `dev`.
 
-Executar um container docker com postgreSQL.
+Executar o seguinte comando para correr um container docker com postgreSQL:
 ```shell
 docker run --name test-postgres --network=postgres-network -e "POSTGRES_PASSWORD=postgres123456" -p 5432:5432 -v db-data-postgres:/var/lib/postgresql/data -d postgres:15-alpine
 ```
-Executar um container PgAdmin 4 que permite se conectar ao container test-postgres, pois estarão na mesma rede (network).
+Executar o comando para iniciar um container PgAdmin 4 que permite se conectar ao container test-postgres, pois estarão na mesma rede (network):
 ```shell
 docker run --name test-pgadmin-postgres-network --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" -e "PGADMIN_DEFAULT_PASSWORD=admin" -d dpage/pgadmin4
 ```
