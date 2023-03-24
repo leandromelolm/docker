@@ -11,6 +11,7 @@ services:
     environment:
       - POSTGRES_DB=person_db
       - POSTGRES_PASSWORD=$ENV_POSTGRES_PASSWORD
+      - APP_PROFILE=dev-docker
     networks:
       - spring-postgres
   pgadmin:
