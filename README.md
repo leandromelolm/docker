@@ -13,6 +13,7 @@
 | docker exec -it CONTAINER_NAME /bin/bash                   | Acessar container            |
 | docker container ls -a                      | Listar container (até os parados)           |
 | docker ps -a -q                             | Listar container (-q para exibir apenas id) |
+| docker ps -a --format '{{.ID}} {{.Names}}'  | Listar com ID e Nome dos container          |
 | docker stop $(docker ps -a -q)              | Parar todos os containers em execução       |
 | docker container inspect ID_CONTAINER       | Inspecionar container                       |
 | docker container stop CONTAINER_ID_OU_NAME  | Parar container                             |
@@ -56,7 +57,7 @@ docker run --name test-postgres --network=postgres-network -e "POSTGRES_PASSWORD
 
 Criando um container para executar pgAdmin4
 ```shell
-docker run --name test-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=test@email.com" -e "PGADMIN_DEFAULT_PASSWORD=postgres123456" -d dpage/pgadmin4
+docker run --name test-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" -e "PGADMIN_DEFAULT_PASSWORD=admin" -d dpage/pgadmin4
 ```
 Acessar URL http://localhost:15432 e na tela de login do pgAdmin 4 usar o login e senha atribuidos em PGADMIN_DEFAULT_EMAIL e PGADMIN_DEFAULT_PASSWORD.
 
