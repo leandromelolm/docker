@@ -1,0 +1,37 @@
+services:
+  app:
+    depends_on:
+      - db
+    restart: on-failure
+    build: backend
+    ports:
+      - 8080:8080
+    env_file: ./.env
+    environment:
+      - POSTGRES_DB=person_db
+      - POSTGRES_PASSWORD=$ENV_POSTGRES_PASSWORD
+    networks:
+      - spring-postgres
+  db:
+    image: postgres:15.2
+    restart: always
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - spring-postgres
+    environment:
+      - POSTGRES_DB=person_db
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: db-pw/password.txt
+networks:
+  spring-postgres:
