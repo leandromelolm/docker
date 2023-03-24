@@ -3,37 +3,42 @@
 
 ### Docker comandos básicos
 
-| Comandos                                      | Descrição                                 |
-|-----------------------------------------------|-------------------------------------------|
-| docker compose up                        | Criar e iniciar containers do arquivo compose  |
-| docker compose up -d                     | Criar e iniciar com terminal liberado          |
-| docker compose down                      | Parar containers                               |
-| docker compose down --rmi all -v         | Parar e remover imagens e volumes              |
-| docker container logs -f ID_OU_NOME_CONTAINER                    | Docker logs            |
-| docker exec -it CONTAINER_NAME /bin/bash                   | Acessar container            |
-| docker container ls -a                      | Listar container (até os parados)           |
-| docker ps -a -q                             | Listar container (-q para exibir apenas id) |
-| docker ps -a --format '{{.ID}} {{.Names}}'  | Listar com ID e Nome dos container          |
-| docker stop $(docker ps -a -q)              | Parar todos os containers em execução       |
-| docker container inspect ID_CONTAINER       | Inspecionar container                       |
-| docker container stop CONTAINER_ID_OU_NAME  | Parar container                             |
-| docker container start CONTAINER_ID_OU_NAME | Iniciar container                           |
-| docker container top CONTAINER_ID_OU_NAME   | Ver processos do container em execução      |
-| docker container rm ID_CONTAINER            | Remover container                           |
-| docker image ls -a                            | Listar Imagens                            |
-| docker image inspect IMAGE_ID                 | Inspecionar Imagens                       |
-| docker rmi -f IMAGE_ID                        | Remover imagem                            |
-| docker volume ls                       | Listar volumes                                   |
-| docker volume inspect VOLUME_NAME      | Inspecionar volume                               |
-| docker volume rm ID_VOLUME             | Remover volume                                   |
-| docker network ls                                   | Listar redes                        |
-| docker network rm NETWORK_ID                        | Remover rede                        |
-| docker events                     | Inspecionar o que tá acontencendo (usar aba separada) |
-| docker stats    | Estatisticas da maquina com uso de containers em execução (usar aba separada)|
-| docker run -p 81:81 -d -m 512m --cpu-quota 50000 IMAGE_NAME  |Executar container com parametros de memória e cpu de uso limitados |
-| docker system df                             | Informações do sistema do docker           |
-| mvn clean package -DskipTests     | Gerar jar com maven (`java`)                          |
-
+| Comandos                                                           | Descrição                                                                                                                 |
+|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| docker compose up                                                  | Criar e iniciar containers do arquivo compose                                                                             |
+| docker compose up -d                                               | Criar e iniciar com terminal liberado                                                                                     |
+| docker compose down                                                | Parar containers                                                                                                          |
+| docker compose down --rmi all -v                                   | Parar e remover imagens e volumes                                                                                         |
+| docker container logs -f ID_OU_NOME_CONTAINER                      | Docker logs                                                                                                               |
+| docker exec -it CONTAINER_NAME /bin/bash                           | Acessar container                                                                                                         |
+| docker container ls -a                                             | Listar container (até os parados)                                                                                         |
+| docker ps -a -q                                                    | Listar container (-q para exibir apenas id)                                                                               |
+| docker ps -a --format '{{.ID}} {{.Names}}'                         | Listar com ID e Nome dos container                                                                                        |
+| docker ps -f "status=exited" --format "table {{.ID}}\t{{.Names}}"  | filtra apenas os containers que estão parados (status = exited) e mostra o ID e o nome de cada um em um formato de tabela |
+| docker ps -f "status=running" --format "table {{.ID}}\t{{.Names}}" | filtra apenas os containers que estão rodando                                                                             |
+| docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"     | Para exibir os containers em um formato de tabela com as informações de ID, nome e status                                 |
+| docker stop $(docker ps -a -q)                                     | Parar todos os containers em execução                                                                                     |
+| docker container inspect ID_CONTAINER                              | Inspecionar container                                                                                                     |
+| docker container stop CONTAINER_ID_OU_NAME                         | Parar container                                                                                                           |
+| docker container start CONTAINER_ID_OU_NAME                        | Iniciar container                                                                                                         |
+| docker container top CONTAINER_ID_OU_NAME                          | Ver processos do container em execução                                                                                    |
+| docker container rm ID_CONTAINER                                   | Remover container                                                                                                         |
+| docker image ls -a                                                 | Listar Imagens                                                                                                            |
+| docker image inspect IMAGE_ID                                      | Inspecionar Imagens                                                                                                       |
+| docker rmi -f IMAGE_ID                                             | Remover imagem                                                                                                            |
+| docker volume ls                                                   | Listar volumes                                                                                                            |
+| docker volume inspect VOLUME_NAME                                  | Inspecionar volume                                                                                                        |
+| docker volume rm ID_VOLUME                                         | Remover volume                                                                                                            |
+| docker network ls                                                  | Listar redes                                                                                                              |
+| docker network rm NETWORK_ID                                       | Remover rede                                                                                                              |
+| docker events                                                      | Inspecionar o que tá acontencendo (usar aba separada)                                                                     |
+| docker stats                                                       | Estatisticas da maquina com uso de containers em execução (usar aba separada)                                             |
+| docker run -p 81:81 -d -m 512m --cpu-quota 50000 IMAGE_NAME        | Executar container com parametros de memória e cpu de uso limitados                                                       |
+| docker system df                                                   | Informações do sistema do docker                                                                                          |
+| mvn clean package -DskipTests                                      | Gerar jar com maven (`java`)                                                                                              |
+| docker ps -as --format "table {{.ID}}\t{{.Names}}\t{{.Size}}"      | Para ver o tamanho que cada container ocupa no disco                                                                      |
+| docker images --format "{{.Repository}}\t{{.Tag}}\t{{.Size}}"      | Para ver o tamanho de todas as imagens no seu sistema Docker                                                              |
+| docker system df -v                                                | Mostra informações sobre o uso de espaço em disco do Docker, incluindo informações sobre volumes, imagens e containers    |
 
 ### Docker + PostgreSQL + PgAdmin4
 
