@@ -95,10 +95,18 @@ Criar banco de dados:
 Os volumes do Docker são gerenciados pelo Docker. Um diretório é criado em `/var/lib/docker/volumes` na instância de contêiner que contém os dados de volume.
 
 ### Referências dos projetos
+
+> https://docs.docker.com/engine/reference/commandline/compose/
+
 > https://imasters.com.br/banco-de-dados/postgresql-docker-executando-uma-instancia-e-o-pgadmin-4-partir-de-containers
+
 > https://learn.microsoft.com/pt-br/visualstudio/docker/tutorials/tutorial-multi-container-app-mysql
+
 > https://www.hostinger.com.br/tutoriais/remover-imagem-docker
+
 > https://www.freecodecamp.org/portuguese/news/como-remover-imagens-e-conteineres-no-docker
+
 > https://www.hostinger.com.br/tutoriais/remover-imagem-docker
+
 > https://medium.com/@gomex/logs-no-docker-c6f3c7fa6ee4
 
