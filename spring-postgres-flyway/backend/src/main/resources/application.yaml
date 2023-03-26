@@ -3,3 +3,8 @@ spring:
     active: ${APP_PROFILE:dev}
   jpa:
     open-in-view: false
+
+springdoc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true

@@ -5,12 +5,15 @@
 - H2
 - PostgreSQL
 - Flyway (faz inserção de dados)
+- Swagger v3
 
 ## Iniciar aplicação com docker
 
 Para iniciar a aplicação com docker, basta navegar até o diretório onde o arquivo docker-compose.yml 
 está localizado e executar o comando `docker-compose up`. 
 Depois que o contêiner for iniciado, as rotas estarão disponíveis na porta padrão 8080.
+Para ver a documentação gerada pelo swagger com as rotas disponíveis  é só acessar a url http://localhost:8080/swagger-ui/index.html.
+
 
 Observação: no application.yml o profile ativo deve ser o `dev-docker`.
 
